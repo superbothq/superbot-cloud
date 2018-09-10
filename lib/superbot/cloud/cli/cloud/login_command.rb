@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'net/http'
+require 'launchy'
 
 module Superbot
   module CLI
@@ -60,9 +61,9 @@ module Superbot
         end
 
         def web_login
-          web = Superbot::Web.new
-          web.run_async_after_running!
-          system('xdg-open', cloud_uri.to_s)
+          web = Superbot::Cloud::WebLogin.new
+          web.run!
+          Launchy.open(cloud_uri.to_s)
 
           puts "🤖 active"
           puts ""
