@@ -27,12 +27,7 @@ Login to the cloud
 ```ruby
 superbot cloud login
 ```
-
-List your organizations from the cloud
-
-```ruby
-superbot org list
-```
+You can log in using command line with flags `[-i, --interactive]`
 
 ## Development
 
