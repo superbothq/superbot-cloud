@@ -29,6 +29,12 @@ superbot cloud login
 ```
 You can log in using command line with flags `[-i, --interactive]`
 
+List your organizations from the cloud
+
+```ruby
+superbot cloud org list
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
