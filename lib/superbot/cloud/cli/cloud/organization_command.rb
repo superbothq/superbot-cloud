@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'organization/list_command'
 
 module Superbot

@@ -25,7 +25,7 @@ module Superbot
 
         def console_login
           email = (print 'Email: '; $stdin.gets.rstrip)
-          password =  (print 'Password: '; $stdin.gets.rstrip)
+          password = (print 'Password: '; $stdin.gets.rstrip)
 
           uri = URI.parse(Superbot::Cloud::Api::LOGIN_URI)
           req = Net::HTTP::Post.new(uri)

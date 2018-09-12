@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Superbot
   module Cloud
     module Api
-      LOGIN_URI =         'https://superapp-staging.herokuapp.com/api/v1/sessions'.freeze
-      TOKEN_URI =         'https://superapp-staging.herokuapp.com/api/v1/token'.freeze
-      ORGANIZATIONS_URI = 'https://superapp-staging.herokuapp.com/api/v1/organizations'.freeze
+      LOGIN_URI =         'https://superapp-staging.herokuapp.com/api/v1/sessions'
+      TOKEN_URI =         'https://superapp-staging.herokuapp.com/api/v1/token'
+      ORGANIZATIONS_URI = 'https://superapp-staging.herokuapp.com/api/v1/organizations'
       ENDPOINT_MAP = {
         login:             LOGIN_URI,
         token:             TOKEN_URI,
@@ -19,7 +21,7 @@ module Superbot
             **Superbot::Cloud.credentials.slice(:email, :token)
           )
         end
-        res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
+        Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
           http.request(req)
         end
       end

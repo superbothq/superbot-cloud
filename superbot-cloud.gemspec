@@ -32,8 +32,16 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "superbot"
+  spec.add_runtime_dependency "superbot"
+  spec.add_runtime_dependency "clamp", "1.2.1"
+  spec.add_runtime_dependency "zaru", "0.2.0"
+  spec.add_runtime_dependency "sinatra", "2.0.3"
+  spec.add_runtime_dependency "launchy", "2.4.3"
+  spec.add_runtime_dependency "sinatra-silent", "0.0.1"
+
+  spec.add_development_dependency "kommando", "~> 0.1"
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rubocop", "~> 0.53"
 end

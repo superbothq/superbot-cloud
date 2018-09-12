@@ -1,5 +1,7 @@
 require "bundler/setup"
+require "superbot"
 require "superbot/cloud"
+require "kommando"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -11,4 +13,8 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+end
+
+def superbot_cloud(*cmds)
+  Kommando.new("exe/superbot-cloud cloud #{cmds.join(" ")}").tap { |k| k.run }
 end

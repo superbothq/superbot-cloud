@@ -8,7 +8,6 @@ module Superbot
     module Cloud
       module Organization
         class ListCommand < Clamp::Command
-
           def execute
             abort "You are not logged in, use `superbot cloud login` to login" unless Superbot::Cloud.credentials
             list_organizations

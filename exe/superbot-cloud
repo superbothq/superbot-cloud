@@ -10,4 +10,5 @@ STDOUT.sync = true
 
 require 'superbot'
 require 'superbot/cloud'
+
 Superbot::CLI::RootCommand.run
