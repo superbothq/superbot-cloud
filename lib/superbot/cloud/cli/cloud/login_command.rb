@@ -11,11 +11,10 @@ module Superbot
         option ['-f', '--force'], :flag, 'force override current credentials'
 
         def execute
-          if File.exist?(Superbot::Cloud::CREDENTIALS_FILE_PATH) && !force?
-            credentials = JSON.parse(File.read(Superbot::Cloud::CREDENTIALS_FILE_PATH))
-
-            if credentials_login_request(credentials).code == '200'
-              puts "Logged in as #{credentials['email']}"
+          if Superbot::Cloud.credentials && !force?
+            api_response = Superbot::Cloud::Api.request(:token, method: :post)
+            if api_response.is_a?(Net::HTTPSuccess)
+              puts "Logged in as #{Superbot::Cloud.credentials[:email]}"
             else
               interactive? ? console_login : web_login
             end
@@ -24,26 +23,11 @@ module Superbot
           end
         end
 
-        def cloud_uri
-          URI.parse(Superbot::Cloud::CLOUD_URI).tap do |uri|
-            uri.query = URI.encode_www_form(redirect_uri: 'http://localhost:4567/login')
-          end
-        end
-
-        def credentials_login_request(credentials)
-          uri = URI.parse(Superbot::Cloud::CLOUD_API_TOKEN_URI)
-          req = Net::HTTP::Post.new(uri)
-          req['Authorization'] = format('Token email=%<email>s, token="%<token>s"', email: credentials['email'], token: credentials['token'])
-          res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
-            http.request(req)
-          end
-        end
-
         def console_login
           email = (print 'Email: '; $stdin.gets.rstrip)
           password =  (print 'Password: '; $stdin.gets.rstrip)
 
-          uri = URI.parse(Superbot::Cloud::CLOUD_API_URI)
+          uri = URI.parse(Superbot::Cloud::Api::LOGIN_URI)
           req = Net::HTTP::Post.new(uri)
           req.content_type = 'multipart/form-data'
           req.set_form_data(email: email, password: password)
@@ -52,8 +36,7 @@ module Superbot
           end
 
           parsed_body = JSON.parse(res.body)
-
-          return parsed_body['errors'] if parsed_body['errors']
+          return parsed_body['errors'] unless res.is_a?(Net::HTTPSuccess)
 
           FileUtils.mkdir_p Superbot::Cloud::CREDENTIALS_PATH, 775
           File.write Superbot::Cloud::CREDENTIALS_FILE_PATH, res.body
@@ -61,14 +44,20 @@ module Superbot
         end
 
         def web_login
-          web = Superbot::Cloud::WebLogin.new
-          web.run!
-          Launchy.open(cloud_uri.to_s)
+          Superbot::Cloud::WebLogin.run!
+          Launchy.open(cloud_login_uri)
 
-          puts "🤖 active"
+          puts "Your browser has been opened to visit:"
+          puts cloud_login_uri
           puts ""
           puts "Press enter to exit"
           $stdin.gets
+        end
+
+        def cloud_login_uri
+          URI.parse(Superbot::Cloud::LOGIN_URI).tap do |uri|
+            uri.query = URI.encode_www_form(redirect_uri: 'http://localhost:4567/login')
+          end.to_s
         end
       end
     end

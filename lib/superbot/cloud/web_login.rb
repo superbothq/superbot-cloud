@@ -28,6 +28,10 @@ module Superbot
         end
       end
 
+      def self.run!
+        new.run!
+      end
+
       def run!
         Thread.new do
           @sinatra.run!
