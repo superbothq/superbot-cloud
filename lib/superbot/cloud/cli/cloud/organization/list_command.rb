@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'net/http'
-require 'launchy'
-
 module Superbot
   module CLI
     module Cloud
