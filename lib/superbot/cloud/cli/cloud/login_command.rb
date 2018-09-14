@@ -12,7 +12,7 @@ module Superbot
 
         def execute
           if Superbot::Cloud.credentials && !force?
-            api_response = Superbot::Cloud::Api.request(:token, method: :post)
+            api_response = Superbot::Cloud::Api.request(:token)
             if api_response.is_a?(Net::HTTPSuccess)
               puts "Logged in as #{Superbot::Cloud.credentials[:email]}"
             else
