@@ -4,6 +4,7 @@ PATH
     superbot-cloud (0.1.0)
       clamp (= 1.2.1)
       launchy (= 2.4.3)
+      multipart-post
       sinatra (= 2.0.3)
       sinatra-silent (= 0.0.1)
       superbot
@@ -21,6 +22,7 @@ GEM
     kommando (0.1.2)
     launchy (2.4.3)
       addressable (~> 2.3)
+    multipart-post (2.0.0)
     mustermann (1.0.3)
     parallel (1.12.1)
     parser (2.5.1.2)
