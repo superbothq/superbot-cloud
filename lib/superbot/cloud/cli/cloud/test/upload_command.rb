@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'zaru'
 require 'fileutils'
 require 'net/http/post/multipart'
 
@@ -9,22 +8,16 @@ module Superbot
     module Cloud
       module Test
         class UploadCommand < Clamp::Command
+          include Superbot::Validations
+
           parameter "PATH", "the path to folder containing tests to upload" do |path|
-            unless path == Zaru.sanitize!(path)
-              raise ArgumentError, "#{path} is not valid name for a directory"
-            end
-
-            unless Dir.exist? path
-              raise ArgumentError, "directory #{path} does not exist"
-            end
-
-            path
+            validates_project_path path
           end
 
-          option ["-o", "--org"], "ORGANIZATION", "Organization to list tests for", attribute_name: :organization
+          option ["-o", "--org"], "ORGANIZATION", "Organization to upload tests for", attribute_name: :organization
 
           def execute
-            abort "You are not logged in, use `superbot cloud login` to login" unless Superbot::Cloud.credentials
+            require_login
             upload_tests
           end
 

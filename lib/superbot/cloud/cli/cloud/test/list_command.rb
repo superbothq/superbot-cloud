@@ -5,10 +5,12 @@ module Superbot
     module Cloud
       module Test
         class ListCommand < Clamp::Command
+          include Superbot::Validations
+
           option ["-o", "--org"], "ORGANIZATION", "Organization to list tests for", attribute_name: :organization
 
           def execute
-            abort "You are not logged in, use `superbot cloud login` to login" unless Superbot::Cloud.credentials
+            require_login
             list_tests
           end
 
