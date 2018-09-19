@@ -3,7 +3,7 @@
 module Superbot
   module Cloud
     LOGIN_URI = 'https://superapp-staging.herokuapp.com/login/cloud'
-    CREDENTIALS_PATH = File.join(ENV['HOME'], '.superbot')
+    CREDENTIALS_PATH = File.join(File.expand_path('~'), '.superbot')
     CREDENTIALS_FILE_PATH = File.join(CREDENTIALS_PATH, 'cloud_token.json')
 
     def self.credentials
