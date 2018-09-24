@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "cloud/validations"
 require_relative 'cloud/login_command'
 require_relative 'cloud/version_command'
 require_relative 'cloud/organization_command'

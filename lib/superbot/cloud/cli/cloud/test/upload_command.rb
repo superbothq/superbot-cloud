@@ -9,6 +9,7 @@ module Superbot
       module Test
         class UploadCommand < Clamp::Command
           include Superbot::Validations
+          include Superbot::Cloud::Validations
 
           parameter "PATH", "the path to folder containing tests to upload" do |path|
             validates_project_path path

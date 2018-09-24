@@ -5,7 +5,7 @@ module Superbot
     module Cloud
       module Test
         class ListCommand < Clamp::Command
-          include Superbot::Validations
+          include Superbot::Cloud::Validations
 
           option ["-o", "--org"], "ORGANIZATION", "Organization to list tests for", attribute_name: :organization
 
