@@ -16,5 +16,5 @@ RSpec.configure do |config|
 end
 
 def superbot_cloud(*cmds)
-  Kommando.new("exe/superbot-cloud cloud #{cmds.join(" ")}").tap { |k| k.run }
+  Kommando.new("exe/superbot-cloud #{cmds.join(" ")}").tap { |k| k.run }
 end
