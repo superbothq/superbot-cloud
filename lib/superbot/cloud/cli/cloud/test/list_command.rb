@@ -15,13 +15,12 @@ module Superbot
           end
 
           def list_tests
-            res = Superbot::Cloud::Api.request(:test_list, params: { organization_name: organization })
-            parsed_body = JSON.parse(res.body, symbolize_names: true)
-            abort parsed_body[:errors] unless res.code == '200'
-            puts "Organization: #{parsed_body[:organization]}"
+            api_response = Superbot::Cloud::Api.request(:test_list, params: { organization_name: organization })
+            abort api_response[:errors] if api_response[:errors]
+            puts "Organization: #{api_response[:organization]}"
             puts "Tests:"
-            parsed_body[:tests].each do |test|
-              puts test[:title]
+            api_response[:tests].each do |test|
+              puts(test[:name], test[:files].map { |f| "- #{f[:filename]}" })
             end
           end
         end

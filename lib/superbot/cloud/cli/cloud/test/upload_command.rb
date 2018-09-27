@@ -24,19 +24,27 @@ module Superbot
 
           def upload_tests
             Dir.glob(File.join(path, '*.rb')) do |test_file|
+              puts "Uploading files from #{path}..."
+              filename = File.basename(test_file)
+              content_type = mime_type_of(test_file)
               File.open(test_file) do |file|
-                res = Superbot::Cloud::Api.request(
+                api_response = Superbot::Cloud::Api.request(
                   :test_upload,
                   params: {
-                    pathname: Zaru.sanitize!(path),
+                    name: Zaru.sanitize!(path),
                     organization_name: organization,
-                    file: UploadIO.new(file, 'text/plain', File.basename(test_file))
+                    file: UploadIO.new(file, content_type, filename)
                   }
                 )
-                parsed_body = JSON.parse(res.body, symbolize_names: true)
-                puts parsed_body
+
+                print filename, ' - ', api_response[:errors] || 'Success'
+                puts
               end
             end
+          end
+
+          def mime_type_of(file)
+            `file -b --mime-type #{file}`.strip
           end
         end
       end
