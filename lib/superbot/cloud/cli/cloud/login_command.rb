@@ -11,36 +11,26 @@ module Superbot
         option ['-f', '--force'], :flag, 'force override current credentials'
 
         def execute
-          if Superbot::Cloud.credentials && !force?
-            api_response = Superbot::Cloud::Api.request(:token)
-            if api_response.is_a?(Net::HTTPSuccess)
-              puts "Logged in as #{Superbot::Cloud.credentials[:email]}"
-            else
-              interactive? ? console_login : web_login
-            end
-          else
-            interactive? ? console_login : web_login
+          return proceed_to_login if force? || Superbot::Cloud.credentials.nil?
+
+          begin
+            Superbot::Cloud::Api.request(:token)
+            puts "Logged in as #{Superbot::Cloud.credentials[:email]}"
+          rescue SystemExit => e
+            abort unless e.message == 'Invalid credentials'
+            proceed_to_login
           end
+        end
+
+        def proceed_to_login
+          interactive? ? console_login : web_login
         end
 
         def console_login
           email = (print 'Email: '; $stdin.gets.rstrip)
           password = (print 'Password: '; $stdin.gets.rstrip)
-
-          uri = URI.parse(Superbot::Cloud::Api::LOGIN_URI)
-          req = Net::HTTP::Post.new(uri)
-          req.content_type = 'multipart/form-data'
-          req.set_form_data(email: email, password: password)
-          res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
-            http.request(req)
-          end
-
-          parsed_body = JSON.parse(res.body)
-          return parsed_body['errors'] unless res.is_a?(Net::HTTPSuccess)
-
-          FileUtils.mkdir_p Superbot::Cloud::CREDENTIALS_PATH, 775
-          File.write Superbot::Cloud::CREDENTIALS_FILE_PATH, res.body
-          puts "Logged in as #{parsed_body['email']}"
+          api_response = Superbot::Cloud::Api.request(:login, params: { email: email, password: password })
+          Superbot::Cloud.save_credentials(api_response)
         end
 
         def web_login
