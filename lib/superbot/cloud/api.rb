@@ -5,7 +5,7 @@ require 'net/http/post/multipart'
 module Superbot
   module Cloud
     module Api
-      BASE_URI = "https://superapp-staging.herokuapp.com/api/v1"
+      BASE_URI = "https://superapp-production.herokuapp.com/api/v1"
       ENDPOINT_MAP = {
         login:             { method: :post, endpoint: 'sessions' },
         token:             { method: :post, endpoint: 'token' },
