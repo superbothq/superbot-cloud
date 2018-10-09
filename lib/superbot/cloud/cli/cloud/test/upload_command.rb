@@ -2,6 +2,8 @@
 
 require 'fileutils'
 require 'net/http/post/multipart'
+require 'marcel'
+require 'pathname'
 
 module Superbot
   module CLI
@@ -26,7 +28,8 @@ module Superbot
             Dir.glob(File.join(path, '*.rb')) do |test_file|
               puts "Uploading files from #{path}..."
               filename = File.basename(test_file)
-              content_type = mime_type_of(test_file)
+              content_type = Marcel::MimeType.for(Pathname.new(test_file), name: filename)
+
               File.open(test_file) do |file|
                 api_response = Superbot::Cloud::Api.request(
                   :test_upload,
@@ -41,10 +44,6 @@ module Superbot
                 puts
               end
             end
-          end
-
-          def mime_type_of(file)
-            `file -b --mime-type #{file}`.strip
           end
         end
       end
