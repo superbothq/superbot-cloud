@@ -1,25 +1,20 @@
 # frozen_string_literal: true
 
-require 'net/http'
-require 'launchy'
-
 module Superbot
   module CLI
     module Cloud
       module Organization
         class ListCommand < Clamp::Command
+          include Superbot::Cloud::Validations
+
           def execute
-            abort "You are not logged in, use `superbot cloud login` to login" unless Superbot::Cloud.credentials
+            require_login
             list_organizations
           end
 
           def list_organizations
-            res = Superbot::Cloud::Api.request(:organization_list)
-            parsed_body = JSON.parse(res.body, symbolize_names: true)
-            abort parsed_body[:errors] unless res.code == '200'
-            parsed_body.each do |organization|
-              puts organization[:name]
-            end
+            api_response = Superbot::Cloud::Api.request(:organization_list)
+            puts(api_response.map { |org| org[:name] })
           end
         end
       end

@@ -15,15 +15,8 @@ module Superbot
           set :silent_access_log, false
 
           get "/login" do
-            if request.params['error']
-              message = request.params['error']
-            else
-              FileUtils.mkdir_p Superbot::Cloud::CREDENTIALS_PATH
-              File.write Superbot::Cloud::CREDENTIALS_FILE_PATH, request.params.slice('email', 'token').to_json
-              message = "Logged in as #{request.params['email']}"
-            end
-            puts message
-            message
+            credentials = request.params.slice('email', 'token')
+            request.params['error'] || Superbot::Cloud.save_credentials(credentials)
           end
         end
       end
