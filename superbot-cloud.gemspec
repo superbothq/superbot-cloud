@@ -6,8 +6,8 @@ require "superbot/cloud/version"
 Gem::Specification.new do |spec|
   spec.name          = "superbot-cloud"
   spec.version       = Superbot::Cloud::VERSION
-  spec.authors       = ["DeeMak13"]
-  spec.email         = ["dima.m@active-bridge.com"]
+  spec.authors       = ["Superbots"]
+  spec.email         = [""]
 
   spec.summary       = %q{Superbot Cloud}
   spec.homepage      = "https://github.com/superbothq/superbot-cloud"
@@ -32,15 +32,15 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'multipart-post'
+  spec.add_dependency "multipart-post", "2.0.0"
 
-  spec.add_runtime_dependency "superbot"
+  spec.add_runtime_dependency "superbot", "~> 0.1.2"
   spec.add_runtime_dependency "clamp", "1.2.1"
   spec.add_runtime_dependency "zaru", "0.2.0"
   spec.add_runtime_dependency "sinatra", "2.0.3"
   spec.add_runtime_dependency "launchy", "2.4.3"
   spec.add_runtime_dependency "sinatra-silent", "0.0.1"
-  spec.add_runtime_dependency "marcel"
+  spec.add_runtime_dependency "marcel", "0.3.3"
 
   spec.add_development_dependency "kommando", "~> 0.1"
   spec.add_development_dependency "bundler", "~> 1.16"

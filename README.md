@@ -27,13 +27,20 @@ Login to the cloud
 ```ruby
 superbot cloud login
 ```
-You can log in using command line with flags `[-i, --interactive]`
 
 List your organizations from the cloud
 
 ```ruby
 superbot cloud org list
 ```
+
+Upload test to the cloud
+
+```ruby
+superbot cloud test upload testfolder
+```
+
+For more commands see `superbot cloud --help`
 
 ## Development
 
