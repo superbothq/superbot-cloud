@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+
+set -e
+
+VERSION=$(exe/superbot-cloud version)
+GEM_FILE="superbot-cloud-$VERSION.gem"
+
+gem uninstall -a -x superbot-cloud
+
+[ -e "$GEM_FILE" ] && rm "$GEM_FILE"
+
+gem build superbot-cloud
+gem install superbot-cloud-$VERSION.gem
+VERSION_INSTALLED=$(superbot-cloud version)
+
+if [ "$VERSION" != "$VERSION_INSTALLED" ]; then
+  echo "!version"
+  exit 1
+fi
+
+superbot-cloud
+
+echo "ok"
