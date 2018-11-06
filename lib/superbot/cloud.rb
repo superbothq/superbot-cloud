@@ -16,8 +16,8 @@ module Superbot
 
     def self.save_credentials(data)
       data.transform_keys!(&:to_sym)
-      FileUtils.mkdir_p Superbot::Cloud::CREDENTIALS_PATH
-      File.write Superbot::Cloud::CREDENTIALS_FILE_PATH, data.to_json
+      FileUtils.mkdir_p CREDENTIALS_PATH
+      File.write CREDENTIALS_FILE_PATH, data.to_json
       "Logged in as #{data[:email]}".tap do |message|
         puts message
       end
