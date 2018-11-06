@@ -8,7 +8,13 @@ $LOAD_PATH.unshift lib_path unless $LOAD_PATH.include?(lib_path)
 
 STDOUT.sync = true
 
-require 'superbot'
+begin
+  gem 'superbot'
+  require 'superbot'
+rescue Gem::LoadError
+  abort "Gem superbot need to be installed."
+end
+
 require 'superbot/cloud'
 
 Superbot::CLI::CloudCommand.run
