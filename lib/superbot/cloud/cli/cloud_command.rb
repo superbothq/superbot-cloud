@@ -14,6 +14,11 @@ module Superbot
       subcommand(['org'], 'Manage your organizations', Cloud::OrganizationCommand) if ENV['SUPERBOT_FEAT_CLOUD_ORG'] == 'true'
       subcommand ['test'], "Manage your tests", Cloud::TestCommand if ENV['SUPERBOT_FEAT_CLOUD_TEST'] == 'true'
 
+      option ['-v', '--version'], :flag, "Show version information" do
+        puts Superbot::Cloud::VERSION
+        exit 0
+      end
+
       def self.run
         super
       rescue StandardError => exc

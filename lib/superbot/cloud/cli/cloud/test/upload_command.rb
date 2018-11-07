@@ -10,12 +10,9 @@ module Superbot
     module Cloud
       module Test
         class UploadCommand < Clamp::Command
-          include Superbot::Validations
           include Superbot::Cloud::Validations
 
-          parameter "PATH", "the path to folder containing tests to upload" do |path|
-            validates_project_path path
-          end
+          parameter "PATH", "the path to folder containing tests to upload"
 
           option ["-o", "--org"], "ORGANIZATION", "Organization to upload tests for", attribute_name: :organization
 
@@ -25,8 +22,8 @@ module Superbot
           end
 
           def upload_tests
-            Dir.glob(File.join(path, '*.rb')) do |test_file|
-              puts "Uploading files from #{path}..."
+            puts "Uploading files from #{path}..."
+            Dir.glob(File.join(path, '*')) do |test_file|
               filename = File.basename(test_file)
               content_type = Marcel::MimeType.for(Pathname.new(test_file), name: filename)
 
