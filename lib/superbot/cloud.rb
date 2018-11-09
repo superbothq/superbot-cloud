@@ -2,7 +2,7 @@
 
 module Superbot
   module Cloud
-    LOGIN_URI = 'http://www.superbot.cloud/login/cloud'
+    LOGIN_URI = "http://#{Superbot::DOMAIN}/login/cloud"
     CREDENTIALS_PATH = File.join(Dir.home, '.superbot')
     private_constant :CREDENTIALS_PATH
     CREDENTIALS_FILE_PATH = File.join(CREDENTIALS_PATH, 'cloud_token.json')
