@@ -15,8 +15,9 @@ module Superbot
           set :silent_access_log, false
 
           get "/login" do
-            credentials = request.params.slice('email', 'token')
-            request.params['error'] || Superbot::Cloud.save_credentials(credentials)
+            credentials = request.params.slice('username', 'email', 'token')
+            Superbot::Cloud.save_credentials(credentials)
+            redirect "#{Superbot::Cloud::LOGIN_URI}/success?username=#{Superbot::Cloud.credentials[:username]}"
           end
         end
       end

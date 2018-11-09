@@ -18,9 +18,7 @@ module Superbot
       data.transform_keys!(&:to_sym)
       FileUtils.mkdir_p CREDENTIALS_PATH
       File.write CREDENTIALS_FILE_PATH, data.to_json
-      "Logged in as #{data[:email]}".tap do |message|
-        puts message
-      end
+      puts "Logged in as #{data[:username]} (#{data[:email]})"
     end
   end
 end
