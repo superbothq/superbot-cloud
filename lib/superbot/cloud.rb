@@ -16,9 +16,10 @@ module Superbot
 
     def self.save_credentials(data)
       data.transform_keys!(&:to_sym)
+      @credentials = data
       FileUtils.mkdir_p CREDENTIALS_PATH
-      File.write CREDENTIALS_FILE_PATH, data.to_json
-      puts "Logged in as #{data[:username]} (#{data[:email]})"
+      File.write CREDENTIALS_FILE_PATH, @credentials.to_json
+      puts "Logged in as #{@credentials[:username]} (#{@credentials[:email]})"
     end
   end
 end
