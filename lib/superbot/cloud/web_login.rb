@@ -13,6 +13,7 @@ module Superbot
           set :silent_sinatra, true
           set :silent_webrick, true
           set :silent_access_log, false
+          server_settings[:Silent] = true
 
           get "/login" do
             credentials = request.params.slice('username', 'email', 'token')
