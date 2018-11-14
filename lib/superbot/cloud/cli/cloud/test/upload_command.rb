@@ -37,7 +37,7 @@ module Superbot
                   }
                 )
 
-                print filename, ' - ', api_response[:errors] || 'Success'
+                print filename, ' - ', api_response[:error] || 'Success'
                 puts
               end
             end

@@ -16,7 +16,7 @@ module Superbot
 
           def list_tests
             api_response = Superbot::Cloud::Api.request(:test_list, params: { organization_name: organization })
-            abort api_response[:errors] if api_response[:errors]
+            abort api_response[:error] if api_response[:error]
             puts "Organization: #{api_response[:organization]}"
             puts "Tests:"
             api_response[:tests].each do |test|

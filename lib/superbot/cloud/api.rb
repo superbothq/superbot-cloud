@@ -36,7 +36,7 @@ module Superbot
         parsed_response = response.class.body_permitted? && JSON.parse(response.body, symbolize_names: true) || {}
         return parsed_response if response.is_a? Net::HTTPSuccess
 
-        abort parsed_response[:errors]
+        abort parsed_response[:error]
       end
     end
   end
