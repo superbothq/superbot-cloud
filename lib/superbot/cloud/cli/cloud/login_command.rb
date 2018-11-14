@@ -17,7 +17,7 @@ module Superbot
             Superbot::Cloud::Api.request(:token)
             user_creds = Superbot::Cloud.credentials
             puts "Logged in as #{user_creds[:username]} (#{user_creds[:email]})"
-          rescue SystemExit => e.message
+          rescue SystemExit => e
             abort unless e.message == 'Invalid credentials'
             proceed_to_login
           end
