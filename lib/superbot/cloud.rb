@@ -5,21 +5,27 @@ module Superbot
     LOGIN_URI = "http://#{Superbot::DOMAIN}/login/cloud"
     CREDENTIALS_PATH = File.join(Dir.home, '.superbot')
     private_constant :CREDENTIALS_PATH
-    CREDENTIALS_FILE_PATH = File.join(CREDENTIALS_PATH, 'cloud_token.json')
+    CREDENTIALS_FILE_PATH = File.join(CREDENTIALS_PATH, 'cloud_credentials.json')
     private_constant :CREDENTIALS_FILE_PATH
 
     def self.credentials
-      return unless File.exist?(CREDENTIALS_FILE_PATH)
+      all_credentials[Superbot::DOMAIN]
+    end
 
-      @credentials ||= JSON.parse(File.read(CREDENTIALS_FILE_PATH), symbolize_names: true)
+    def self.all_credentials
+      @all_credentials ||=
+        if File.exist?(CREDENTIALS_FILE_PATH)
+          JSON.parse(File.read(CREDENTIALS_FILE_PATH), symbolize_names: true)
+        else
+          {}
+        end
     end
 
     def self.save_credentials(data)
-      data.transform_keys!(&:to_sym)
-      @credentials = data
+      all_credentials[Superbot::DOMAIN] = data.transform_keys!(&:to_sym)
       FileUtils.mkdir_p CREDENTIALS_PATH
-      File.write CREDENTIALS_FILE_PATH, @credentials.to_json
-      puts "Logged in as #{@credentials[:username]} (#{@credentials[:email]})"
+      File.write CREDENTIALS_FILE_PATH, all_credentials.to_json
+      puts "Logged in as %<username>s (%<email>s)" % credentials.slice(:username, :email)
     end
   end
 end
