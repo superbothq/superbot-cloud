@@ -9,7 +9,7 @@ module Superbot
     private_constant :CREDENTIALS_FILE_PATH
 
     def self.credentials
-      all_credentials[Superbot::DOMAIN]
+      all_credentials[Superbot::DOMAIN.to_sym]
     end
 
     def self.all_credentials
@@ -22,7 +22,7 @@ module Superbot
     end
 
     def self.save_credentials(data)
-      all_credentials[Superbot::DOMAIN] = data.transform_keys!(&:to_sym)
+      all_credentials[Superbot::DOMAIN.to_sym] = data.transform_keys!(&:to_sym)
       FileUtils.mkdir_p CREDENTIALS_PATH
       File.write CREDENTIALS_FILE_PATH, all_credentials.to_json
       puts "Logged in as %<username>s (%<email>s)" % credentials.slice(:username, :email)
