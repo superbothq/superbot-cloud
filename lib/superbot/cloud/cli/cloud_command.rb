@@ -11,8 +11,8 @@ module Superbot
     class CloudCommand < Clamp::Command
       subcommand ['version'], 'Superbot cloud version', Cloud::VersionCommand
       subcommand ['login'], 'Login to superbot cloud', Cloud::LoginCommand
-      subcommand(['org'], 'Manage your organizations', Cloud::OrganizationCommand) if ENV['SUPERBOT_FEAT_CLOUD_ORG'] == 'true'
-      subcommand ['test'], "Manage your tests", Cloud::TestCommand if ENV['SUPERBOT_FEAT_CLOUD_TEST'] == 'true'
+      subcommand(['org'], 'Manage your organizations', Cloud::OrganizationCommand)
+      subcommand ['test'], "Manage your tests", Cloud::TestCommand
 
       option ['-v', '--version'], :flag, "Show version information" do
         puts Superbot::Cloud::VERSION
