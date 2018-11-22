@@ -7,12 +7,14 @@ module Superbot
     module Api
       BASE_URI = "#{Superbot::URI_SCHEME}://#{Superbot::DOMAIN}/api/v1"
       ENDPOINT_MAP = {
-        login:             { method: :post, endpoint: 'sessions' },
-        token:             { method: :post, endpoint: 'token' },
-        organization_list: { method: :get, endpoint: 'organizations' },
-        test_list:         { method: :get, endpoint: 'tests' },
-        test_upload:       { method: :post_multipart, endpoint: 'tests' },
-        delete_test:       { method: :delete, endpoint: 'tests', required_param: :name }
+        login:                    { method: :post, endpoint: 'sessions' },
+        token:                    { method: :post, endpoint: 'token' },
+        organization_list:        { method: :get, endpoint: 'organizations' },
+        test_list:                { method: :get, endpoint: 'tests' },
+        test_upload:              { method: :post_multipart, endpoint: 'tests' },
+        delete_test:              { method: :delete, endpoint: 'tests', required_param: :name },
+        webdriver_session_list:   { method: :get, endpoint: 'webdriver_sessions' },
+        delete_webdriver_session: { method: :delete, endpoint: 'webdriver_sessions', required_param: :session_id }
       }.freeze
 
       def self.request(type, params: {})

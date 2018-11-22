@@ -5,6 +5,7 @@ require_relative 'cloud/login_command'
 require_relative 'cloud/version_command'
 require_relative 'cloud/organization_command'
 require_relative 'cloud/test_command'
+require_relative 'cloud/webdriver_command'
 
 module Superbot
   module CLI
@@ -13,6 +14,7 @@ module Superbot
       subcommand ['login'], 'Login to superbot cloud', Cloud::LoginCommand
       subcommand(['org'], 'Manage your organizations', Cloud::OrganizationCommand)
       subcommand ['test'], "Manage your tests", Cloud::TestCommand
+      subcommand ['webdriver'], "Manage your webdriver sessions", Cloud::WebdriverCommand
 
       option ['-v', '--version'], :flag, "Show version information" do
         puts Superbot::Cloud::VERSION
