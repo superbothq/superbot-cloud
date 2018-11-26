@@ -7,7 +7,7 @@ module Superbot
         class DeleteCommand < Clamp::Command
           include Superbot::Cloud::Validations
 
-          parameter "SESSION_ID", "webdriver session ID", required: true
+          parameter "SESSION_ID ...", "webdriver session ID", required: true
 
           def execute
             require_login
@@ -15,14 +15,20 @@ module Superbot
           end
 
           def delete_session
-            Superbot::Cloud::Api.request(
-              :delete_webdriver_session,
-              params: {
-                session_id: session_id
-              }
-            )
+            session_id_list.each do |session_id|
+              begin
+                Superbot::Cloud::Api.request(
+                  :delete_webdriver_session,
+                  params: {
+                    session_id: session_id
+                  }
+                )
 
-            puts "Webdriver session removal has been requested."
+                puts "Webdriver session #{session_id} removal has been requested."
+              rescue SystemExit
+                p # skip to next webdriver session
+              end
+            end
           end
         end
       end
