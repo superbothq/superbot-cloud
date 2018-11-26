@@ -23,7 +23,7 @@ module Superbot
 
         req = Net::HTTP.const_get(
           method.to_s.split('_').map(&:capitalize).join('::')
-        ).new(uri, params.compact)
+        ).new(uri, method == :post_multipart ? params.compact : {})
         req.set_form_data(params.compact) unless method == :post_multipart
         if Superbot::Cloud.credentials
           req['Authorization'] = format(
