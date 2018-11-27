@@ -21,10 +21,20 @@ module Superbot
         method, endpoint, required_param = ENDPOINT_MAP[type].values
         uri = URI.parse([BASE_URI, endpoint, params[required_param]].compact.join('/'))
 
-        req = Net::HTTP.const_get(
-          method.to_s.split('_').map(&:capitalize).join('::')
-        ).new(uri, method == :post_multipart ? params.compact : {})
-        req.set_form_data(params.compact) unless method == :post_multipart
+        request_class = Net::HTTP.const_get(method.to_s.split('_').map(&:capitalize).join('::'))
+
+        params = params.compact
+        req =
+          case method
+          when :get
+            uri.query = URI.encode_www_form(params)
+            req = request_class.new(uri)
+          when :post_multipart
+            request_class.new(uri, params)
+          else
+            request_class.new(uri).tap { |r| r.set_form_data(params) }
+          end
+
         if Superbot::Cloud.credentials
           req['Authorization'] = format(
             'Token token="%<token>s", email="%<email>s"',
