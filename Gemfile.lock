@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    superbot-cloud (0.1.17)
+    superbot-cloud (0.1.18)
       marcel (= 0.3.3)
       multipart-post (= 2.0.0)
 
@@ -67,16 +67,16 @@ GEM
       rack-protection (= 2.0.3)
       tilt (~> 2.0)
     sinatra-silent (0.0.1)
-    superbot (0.1.22)
+    superbot (0.1.23)
       clamp (= 1.2.1)
       kommando (~> 0.1)
       launchy (= 2.4.3)
       selenium-webdriver (~> 3.14, >= 3.14.0)
       sinatra (= 2.0.3)
       sinatra-silent (= 0.0.1)
-      superbot-cloud (~> 0.1.16)
+      superbot-cloud (~> 0.1.17)
       zaru (= 0.2.0)
-    tilt (2.0.8)
+    tilt (2.0.9)
     unicode-display_width (1.4.0)
     zaru (0.2.0)
 
@@ -88,7 +88,7 @@ DEPENDENCIES
   rake (~> 10.0)
   rspec (~> 3.0)
   rubocop (~> 0.53)
-  superbot (~> 0.1.22)
+  superbot (~> 0.1.23)
   superbot-cloud!
 
 BUNDLED WITH
