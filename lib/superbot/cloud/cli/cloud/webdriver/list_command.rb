@@ -6,6 +6,11 @@ module Superbot
       module Webdriver
         class ListCommand < Clamp::Command
           include Superbot::Cloud::Validations
+          OUTPUT_HEADERS = {
+            session_id: "Session ID",
+            created_at: "Created at",
+            updated_at: "Last activity"
+          }.freeze
 
           option %w[-q --quiet], :flag, "Only show webdriver session IDs"
           option %w[-a --all], :flag, "Show all the sessions (including finished)"
@@ -25,11 +30,10 @@ module Superbot
             if quiet?
               puts(api_response[:webdriver_sessions].map { |session| session[:session_id] })
             else
-              headers = api_response[:webdriver_sessions].first&.keys
-              puts headers.map { |field| field.to_s.upcase.ljust(35) }.join
-              puts ''.ljust(35 * headers.length, '-')
+              puts OUTPUT_HEADERS.values.map { |header| header.ljust(35) }.join
+              puts ''.ljust(35 * OUTPUT_HEADERS.length, '-')
               api_response[:webdriver_sessions].each do |webdriver_session|
-                puts webdriver_session.values.map { |v| v.to_s.ljust(35) }.join
+                puts webdriver_session.slice(*OUTPUT_HEADERS.keys).values.map { |v| v.to_s.ljust(35) }.join
               end
             end
           end
