@@ -35,11 +35,10 @@ module Superbot
         end
 
         def web_login
-          web = Superbot::Cloud::WebLogin.new
-          web.run_async_after_running!
           open_cloud_login_uri
-          handle_keyboard_interrupt
-          wait_for_login(web)
+          web = Superbot::Web.new
+          web.register(Superbot::Cloud::WebLogin)
+          web.run!
         end
 
         def open_cloud_login_uri
@@ -50,22 +49,6 @@ module Superbot
           Launchy.open(cloud_login_uri)
           puts "Your browser has been opened to visit:", cloud_login_uri
           puts
-        end
-
-        def handle_keyboard_interrupt
-          trap "SIGINT" do
-            puts
-            puts "Command killed by keyboard interrupt"
-            exit 130
-          end
-        end
-
-        def wait_for_login(web)
-          loop do
-            break unless web.running?
-
-            sleep 0.1
-          end
         end
       end
     end
