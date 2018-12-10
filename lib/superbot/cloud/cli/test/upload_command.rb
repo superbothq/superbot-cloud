@@ -6,8 +6,8 @@ require 'marcel'
 require 'pathname'
 
 module Superbot
-  module CLI
-    module Cloud
+  module Cloud
+    module CLI
       module Test
         class UploadCommand < Clamp::Command
           include Superbot::Cloud::Validations

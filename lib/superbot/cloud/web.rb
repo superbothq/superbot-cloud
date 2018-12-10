@@ -2,7 +2,7 @@
 
 module Superbot
   module Cloud
-    module WebLogin
+    module Web
       def self.register(sinatra)
         sinatra.get "/login" do
           credentials = request.params.slice('username', 'email', 'token')

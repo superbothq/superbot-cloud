@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Superbot
-  module CLI
-    module Cloud
+  module Cloud
+    module CLI
       module Organization
         class ListCommand < Clamp::Command
           include Superbot::Cloud::Validations

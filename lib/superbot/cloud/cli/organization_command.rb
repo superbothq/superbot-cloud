@@ -3,10 +3,10 @@
 require_relative 'organization/list_command'
 
 module Superbot
-  module CLI
-    module Cloud
+  module Cloud
+    module CLI
       class OrganizationCommand < Clamp::Command
-        subcommand ['list'], "List user organizations from the cloud", Cloud::Organization::ListCommand
+        subcommand ['list'], "List user organizations from the cloud", Organization::ListCommand
 
         def self.run
           super

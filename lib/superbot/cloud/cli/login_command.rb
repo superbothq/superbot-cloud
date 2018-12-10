@@ -4,8 +4,8 @@ require 'net/http'
 require 'launchy'
 
 module Superbot
-  module CLI
-    module Cloud
+  module Cloud
+    module CLI
       class LoginCommand < Clamp::Command
         option ['-i', '--interactive'], :flag, 'interactive login from command line'
         option ['-f', '--force'], :flag, 'force override current credentials'
@@ -36,9 +36,7 @@ module Superbot
 
         def web_login
           open_cloud_login_uri
-          web = Superbot::Web.new
-          web.register(Superbot::Cloud::WebLogin)
-          web.run!
+          Superbot::Web.run!
         end
 
         def open_cloud_login_uri

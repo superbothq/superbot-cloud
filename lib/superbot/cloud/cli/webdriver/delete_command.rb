@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Superbot
-  module CLI
-    module Cloud
+  module Cloud
+    module CLI
       module Webdriver
         class DeleteCommand < Clamp::Command
           include Superbot::Cloud::Validations
