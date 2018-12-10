@@ -17,4 +17,4 @@ end
 
 require 'superbot/cloud'
 
-Superbot::CLI::CloudCommand.run
+Superbot::Cloud::CLI::RootCommand.run
