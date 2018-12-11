@@ -6,6 +6,7 @@ require_relative 'version_command'
 require_relative 'organization_command'
 require_relative 'test_command'
 require_relative 'webdriver_command'
+require_relative 'member_command'
 
 module Superbot
   module Cloud
@@ -16,6 +17,7 @@ module Superbot
         subcommand(['org'], 'Manage your organizations', OrganizationCommand)
         subcommand ['test'], "Manage your tests", TestCommand
         subcommand ['webdriver'], "Manage your webdriver sessions", WebdriverCommand
+        subcommand ['member'], "Manage your organization members", MemberCommand
 
         option ['-v', '--version'], :flag, "Show version information" do
           puts Superbot::Cloud::VERSION

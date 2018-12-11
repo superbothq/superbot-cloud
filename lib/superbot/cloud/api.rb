@@ -7,14 +7,17 @@ module Superbot
     module Api
       BASE_URI = "#{Superbot::Cloud::BASE_URI}/api/v1"
       ENDPOINT_MAP = {
-        login:                    { method: :post, endpoint: 'sessions' },
-        token:                    { method: :post, endpoint: 'token' },
-        organization_list:        { method: :get, endpoint: 'organizations' },
-        test_list:                { method: :get, endpoint: 'tests' },
-        test_upload:              { method: :post_multipart, endpoint: 'tests' },
-        delete_test:              { method: :delete, endpoint: 'tests', required_param: :name },
-        webdriver_session_list:   { method: :get, endpoint: 'webdriver_sessions' },
-        delete_webdriver_session: { method: :delete, endpoint: 'webdriver_sessions', required_param: :session_id }
+        login:                      { method: :post, endpoint: 'sessions' },
+        token:                      { method: :post, endpoint: 'token' },
+        organization_list:          { method: :get, endpoint: 'organizations' },
+        test_list:                  { method: :get, endpoint: 'tests' },
+        test_upload:                { method: :post_multipart, endpoint: 'tests' },
+        delete_test:                { method: :delete, endpoint: 'tests', required_param: :name },
+        webdriver_session_list:     { method: :get, endpoint: 'webdriver_sessions' },
+        delete_webdriver_session:   { method: :delete, endpoint: 'webdriver_sessions', required_param: :session_id },
+        organization_members_list:  { method: :get, endpoint: 'members' },
+        organization_add_member:    { method: :post, endpoint: 'members' },
+        organization_remove_member: { method: :delete, endpoint: 'members', required_param: :username }
       }.freeze
 
       def self.request(type, params: {})
