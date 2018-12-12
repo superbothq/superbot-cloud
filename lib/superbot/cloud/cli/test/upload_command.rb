@@ -9,12 +9,10 @@ module Superbot
   module Cloud
     module CLI
       module Test
-        class UploadCommand < Clamp::Command
+        class UploadCommand < BaseCommand
           include Superbot::Cloud::Validations
 
           parameter "PATH", "the path to folder containing tests to upload"
-
-          option ["-o", "--org"], "ORGANIZATION", "Organization to upload tests for", attribute_name: :organization
 
           def execute
             require_login

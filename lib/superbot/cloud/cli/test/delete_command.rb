@@ -4,10 +4,9 @@ module Superbot
   module Cloud
     module CLI
       module Test
-        class DeleteCommand < Clamp::Command
+        class DeleteCommand < BaseCommand
           include Superbot::Cloud::Validations
 
-          option ["-o", "--org"], "ORGANIZATION", "Organization to search test for deletion", attribute_name: :organization
           parameter "NAME", "the name of the test to delete", required: true
 
           def execute

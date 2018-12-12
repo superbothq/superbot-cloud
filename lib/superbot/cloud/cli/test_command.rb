@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'test/base_command'
 require_relative 'test/list_command'
 require_relative 'test/upload_command'
 require_relative 'test/delete_command'
