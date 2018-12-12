@@ -3,7 +3,7 @@
 module Superbot
   module Cloud
     module Web
-      def self.register(sinatra)
+      def self.registered(sinatra)
         sinatra.get "/login" do
           credentials = request.params.slice('username', 'email', 'token')
           Superbot::Cloud.save_credentials(credentials)
