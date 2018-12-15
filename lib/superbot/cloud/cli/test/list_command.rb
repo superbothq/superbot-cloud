@@ -4,10 +4,8 @@ module Superbot
   module Cloud
     module CLI
       module Test
-        class ListCommand < Clamp::Command
+        class ListCommand < BaseCommand
           include Superbot::Cloud::Validations
-
-          option ["-o", "--org"], "ORGANIZATION", "Organization to list tests for", attribute_name: :organization
 
           def execute
             require_login

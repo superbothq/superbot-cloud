@@ -5,9 +5,12 @@ module Superbot
     module CLI
       module Member
         class AddCommand < BaseCommand
+          include Superbot::Cloud::Validations
+
           parameter "USERNAME", "Username of a user to add", required: true
 
           def execute
+            require_login
             add_member
           end
 
