@@ -28,6 +28,12 @@ module Superbot
       File.write CREDENTIALS_FILE_PATH, all_credentials.to_json
       puts "Logged in as %<username>s (%<email>s)" % credentials.slice(:username, :email)
     end
+
+    def self.remove_credentials
+      abort "You are not logged in yet." unless credentials
+      all_credentials.delete(Superbot::DOMAIN.to_sym)
+      File.write CREDENTIALS_FILE_PATH, all_credentials.to_json
+    end
   end
 end
 

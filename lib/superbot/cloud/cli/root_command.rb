@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require_relative 'validations'
-require_relative 'login_command'
 require_relative 'version_command'
+require_relative 'login_command'
+require_relative 'logout_command'
 require_relative 'organization_command'
 require_relative 'test_command'
 require_relative 'webdriver_command'
@@ -13,7 +14,8 @@ module Superbot
     module CLI
       class RootCommand < Clamp::Command
         subcommand ['version'], 'Superbot cloud version', VersionCommand
-        subcommand ['login'], 'Login to superbot cloud', LoginCommand
+        subcommand ['login'], 'Authorize superbot to access cloud API with Superbot Cloud user credentials', LoginCommand
+        subcommand ['logout'], 'Revoke credentials for an account', LogoutCommand
         subcommand(['org'], 'Manage your organizations', OrganizationCommand)
         subcommand ['test'], "Manage your tests", TestCommand
         subcommand ['webdriver'], "Manage your webdriver sessions", WebdriverCommand
