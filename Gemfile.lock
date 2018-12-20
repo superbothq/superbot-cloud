@@ -1,21 +1,7 @@
 PATH
-  remote: ../superbot
-  specs:
-    superbot (0.1.32)
-      clamp (= 1.2.1)
-      kommando (~> 0.1)
-      launchy (= 2.4.3)
-      sinatra (= 2.0.4)
-      sinatra-silent (= 0.0.1)
-      superbot-cloud (~> 0.1.22)
-      superbot-selenium-webdriver (~> 1.0.3)
-      superbot-teleport (~> 0.2.3)
-      zaru (= 0.2.0)
-
-PATH
   remote: .
   specs:
-    superbot-cloud (0.1.22)
+    superbot-cloud (0.2.0)
       marcel (= 0.3.3)
       multipart-post (= 2.0.0)
 
@@ -43,12 +29,12 @@ GEM
       addressable (~> 2.3)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
-    mimemagic (0.3.2)
-    mini_portile2 (2.3.0)
+    mimemagic (0.3.3)
+    mini_portile2 (2.4.0)
     multipart-post (2.0.0)
     mustermann (1.0.3)
-    nokogiri (1.8.5)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.9.1)
+      mini_portile2 (~> 2.4.0)
     parallel (1.12.1)
     parser (2.5.1.2)
       ast (~> 2.4.0)
@@ -91,7 +77,25 @@ GEM
       rack-protection (= 2.0.4)
       tilt (~> 2.0)
     sinatra-silent (0.0.1)
-    superbot-selenium-webdriver (1.0.3)
+    superbot (0.2.1)
+      clamp (= 1.2.1)
+      kommando (~> 0.1)
+      launchy (= 2.4.3)
+      sinatra (= 2.0.4)
+      sinatra-silent (= 0.0.1)
+      superbot-cloud (~> 0.1.22)
+      superbot-record
+      superbot-runner
+      superbot-selenium-webdriver (~> 1.0.5)
+      superbot-teleport (~> 0.2.3)
+      zaru (= 0.2.0)
+    superbot-record (0.1.0)
+      superbot-record-chrome
+    superbot-record-chrome (0.1.0)
+    superbot-runner (0.1.0)
+      superbot-runner-side
+    superbot-runner-side (0.1.0)
+    superbot-selenium-webdriver (1.0.5)
       chromedriver-helper (= 2.1.0)
       selenium-webdriver (= 3.141.0)
     superbot-teleport (0.2.3)
@@ -108,7 +112,7 @@ DEPENDENCIES
   rake (~> 10.0)
   rspec (~> 3.0)
   rubocop (~> 0.53)
-  superbot!
+  superbot
   superbot-cloud!
 
 BUNDLED WITH
