@@ -5,12 +5,9 @@ module Superbot
     module CLI
       module Webdriver
         class DeleteCommand < Clamp::Command
-          include Superbot::Cloud::Validations
-
           parameter "SESSION_ID ...", "webdriver session ID", required: true
 
           def execute
-            require_login
             delete_session
           end
 

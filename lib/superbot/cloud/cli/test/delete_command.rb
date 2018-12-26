@@ -5,12 +5,9 @@ module Superbot
     module CLI
       module Test
         class DeleteCommand < BaseCommand
-          include Superbot::Cloud::Validations
-
           parameter "NAME", "the name of the test to delete", required: true
 
           def execute
-            require_login
             delete_test
           end
 

@@ -5,12 +5,9 @@ module Superbot
     module CLI
       module Member
         class RemoveCommand < BaseCommand
-          include Superbot::Cloud::Validations
-
           parameter "USERNAME", "Username of a user to remove"
 
           def execute
-            require_login
             remove_member
           end
 

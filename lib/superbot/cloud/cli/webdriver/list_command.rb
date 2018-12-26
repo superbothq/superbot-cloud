@@ -5,7 +5,6 @@ module Superbot
     module CLI
       module Webdriver
         class ListCommand < Clamp::Command
-          include Superbot::Cloud::Validations
           OUTPUT_HEADERS = {
             session_id: "Session ID",
             created_at: "Created at",
@@ -16,7 +15,6 @@ module Superbot
           option %w[-a --all], :flag, "Show all the sessions (including finished)"
 
           def execute
-            require_login
             list_sessions
           end
 
