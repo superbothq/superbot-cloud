@@ -10,12 +10,9 @@ module Superbot
     module CLI
       module Test
         class UploadCommand < BaseCommand
-          include Superbot::Cloud::Validations
-
           parameter "PATH", "the path to folder containing tests to upload"
 
           def execute
-            require_login
             upload_tests
           end
 

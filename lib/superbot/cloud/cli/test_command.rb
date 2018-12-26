@@ -5,6 +5,7 @@ require_relative 'test/list_command'
 require_relative 'test/upload_command'
 require_relative 'test/download_command'
 require_relative 'test/delete_command'
+require_relative 'test/schedule_command'
 
 module Superbot
   module Cloud
@@ -14,6 +15,7 @@ module Superbot
         subcommand ['upload'], "Upload test to the cloud", Test::UploadCommand
         subcommand ['download'], "Download test from the cloud", Test::DownloadCommand
         subcommand ['delete'], "Delete test from the cloud", Test::DeleteCommand
+        subcommand ['schedule'], "Schedule a test", Test::ScheduleCommand
 
         def self.run
           super
