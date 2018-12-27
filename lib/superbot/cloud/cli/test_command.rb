@@ -16,13 +16,6 @@ module Superbot
         subcommand ['download'], "Download test from the cloud", Test::DownloadCommand
         subcommand ['delete'], "Delete test from the cloud", Test::DeleteCommand
         subcommand ['schedule'], "Schedule a test", Test::ScheduleCommand
-
-        def self.run
-          super
-        rescue StandardError => exc
-          warn exc.message
-          warn exc.backtrace.join("\n")
-        end
       end
     end
   end

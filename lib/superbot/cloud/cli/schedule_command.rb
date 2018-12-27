@@ -10,13 +10,6 @@ module Superbot
       class ScheduleCommand < LoginRequiredCommand
         subcommand ['list'], "List your schedules", Schedule::ListCommand
         subcommand ['cancel'], "Cancel your schedule", Schedule::CancelCommand
-
-        def self.run
-          super
-        rescue StandardError => exc
-          warn exc.message
-          warn exc.backtrace.join("\n")
-        end
       end
     end
   end
