@@ -4,8 +4,7 @@ module Superbot
   module Cloud
     module CLI
       module Schedule
-        class BaseCommand < Clamp::Command
-          option ["--org"], "ORGANIZATION", "Organization to to take actions on", attribute_name: :organization
+        class BaseCommand < OrganizationBasedCommand
         end
       end
     end

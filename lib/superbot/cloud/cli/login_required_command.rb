@@ -3,9 +3,8 @@
 module Superbot
   module Cloud
     module CLI
-      module Member
-        class BaseCommand < OrganizationBasedCommand
-        end
+      class LoginRequiredCommand < Clamp::Command
+        Superbot::Cloud::Validations.require_login
       end
     end
   end
