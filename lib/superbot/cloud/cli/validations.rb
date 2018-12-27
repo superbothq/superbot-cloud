@@ -8,8 +8,6 @@ module Superbot
 
         abort "You are not logged in, use `superbot cloud login` to login"
       end
-
-      module_function :require_login
     end
   end
 end

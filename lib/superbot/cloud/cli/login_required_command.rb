@@ -4,9 +4,15 @@ module Superbot
   module Cloud
     module CLI
       class LoginRequiredCommand < Clamp::Command
-        Superbot::Cloud::Validations.require_login
+        include Superbot::Cloud::Validations
+
+        def run(args)
+          require_login
+          super
+        end
 
         def self.run
+          require_login
           super
         rescue StandardError => exc
           warn exc.message
