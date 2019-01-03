@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'webdriver/base_command'
 require_relative 'webdriver/list_command'
 require_relative 'webdriver/delete_command'
 
