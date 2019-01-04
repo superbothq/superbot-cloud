@@ -26,7 +26,7 @@ module Superbot
                 api_response = Superbot::Cloud::Api.request(
                   :test_upload,
                   params: {
-                    name: Zaru.sanitize!(path),
+                    name: Zaru.sanitize!(File.basename(path)),
                     organization_name: organization,
                     file: UploadIO.new(file, content_type, filename)
                   }
