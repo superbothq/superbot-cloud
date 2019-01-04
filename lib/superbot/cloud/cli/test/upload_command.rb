@@ -10,12 +10,9 @@ module Superbot
     module CLI
       module Test
         class UploadCommand < BaseCommand
-          include Superbot::Cloud::Validations
-
           parameter "PATH", "the path to folder containing tests to upload"
 
           def execute
-            require_login
             upload_tests
           end
 
@@ -29,7 +26,7 @@ module Superbot
                 api_response = Superbot::Cloud::Api.request(
                   :test_upload,
                   params: {
-                    name: Zaru.sanitize!(path),
+                    name: Zaru.sanitize!(File.basename(path)),
                     organization_name: organization,
                     file: UploadIO.new(file, content_type, filename)
                   }

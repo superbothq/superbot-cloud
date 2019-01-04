@@ -8,12 +8,9 @@ module Superbot
     module CLI
       module Test
         class DownloadCommand < BaseCommand
-          include Superbot::Cloud::Validations
-
           parameter "NAME", "the name of test to download"
 
           def execute
-            require_login
             download_test
           end
 

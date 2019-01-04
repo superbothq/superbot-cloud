@@ -3,7 +3,7 @@
 module Superbot
   module Cloud
     module CLI
-      module Member
+      module Schedule
         class BaseCommand < OrganizationBasedCommand
         end
       end

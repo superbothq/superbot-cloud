@@ -5,10 +5,7 @@ module Superbot
     module CLI
       module Test
         class ListCommand < BaseCommand
-          include Superbot::Cloud::Validations
-
           def execute
-            require_login
             list_tests
           end
 

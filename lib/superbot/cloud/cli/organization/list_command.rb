@@ -5,10 +5,7 @@ module Superbot
     module CLI
       module Organization
         class ListCommand < Clamp::Command
-          include Superbot::Cloud::Validations
-
           def execute
-            require_login
             list_organizations
           end
 

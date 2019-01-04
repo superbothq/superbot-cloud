@@ -5,10 +5,7 @@ module Superbot
     module CLI
       module Member
         class ListCommand < BaseCommand
-          include Superbot::Cloud::Validations
-
           def execute
-            require_login
             list_members
           end
 
