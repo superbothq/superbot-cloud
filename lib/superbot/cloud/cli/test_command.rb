@@ -15,7 +15,7 @@ module Superbot
         subcommand ['upload'], "Upload test to the cloud", Test::UploadCommand
         subcommand ['download'], "Download test from the cloud", Test::DownloadCommand
         subcommand ['delete'], "Delete test from the cloud", Test::DeleteCommand
-        subcommand ['schedule'], "Schedule a test", Test::ScheduleCommand
+        subcommand(['schedule'], "Schedule a test", Test::ScheduleCommand) if ENV['SUPERBOT_FEAT_SCHEDULE'] == 'true'
       end
     end
   end

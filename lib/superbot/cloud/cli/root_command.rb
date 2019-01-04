@@ -23,7 +23,7 @@ module Superbot
         subcommand ['test'], "Manage your tests", TestCommand
         subcommand ['webdriver'], "Manage your webdriver sessions", WebdriverCommand
         subcommand ['member'], "Manage your organization members", MemberCommand
-        subcommand ['schedule'], "Manage your test schedules", ScheduleCommand
+        subcommand(['schedule'], "Manage your test schedules", ScheduleCommand) if ENV['SUPERBOT_FEAT_SCHEDULE'] == 'true'
 
         option ['-v', '--version'], :flag, "Show version information" do
           puts Superbot::Cloud::VERSION
