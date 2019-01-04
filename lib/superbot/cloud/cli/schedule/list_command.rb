@@ -10,7 +10,8 @@ module Superbot
             test_name: { name: "Test", column_size: 25 },
             starts_at: { name: "Scheduled Time", column_size: 25 },
             region: { name: "Region", column_size: 20 },
-            status: { name: "Status", column_size: 10 }
+            status: { name: "Status", column_size: 10 },
+            parallel: { name: "User load", column_size: 10 }
           }.freeze
 
           option %w[-q --quiet], :flag, "Only show schedule IDs"

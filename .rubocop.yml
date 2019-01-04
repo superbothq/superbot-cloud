@@ -8,7 +8,7 @@ AllCops:
     - "*.gemspec"
     - bundler/**/*
     - vendor/bundle/**/* # travis with --deployment
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.5
 
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:

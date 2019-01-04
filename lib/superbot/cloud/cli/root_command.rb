@@ -19,7 +19,7 @@ module Superbot
         subcommand ['version'], 'Superbot cloud version', VersionCommand
         subcommand ['login'], 'Authorize superbot to access cloud API with Superbot Cloud user credentials', LoginCommand
         subcommand ['logout'], 'Revoke credentials for an account', LogoutCommand
-        subcommand(['org'], 'Manage your organizations', OrganizationCommand)
+        subcommand ['org'], 'Manage your organizations', OrganizationCommand
         subcommand ['test'], "Manage your tests", TestCommand
         subcommand ['webdriver'], "Manage your webdriver sessions", WebdriverCommand
         subcommand ['member'], "Manage your organization members", MemberCommand
