@@ -7,7 +7,7 @@ module Superbot
         class ScheduleCommand < BaseCommand
           parameter "NAME", "the name of the test to delete", required: true
           option ['--region'], 'REGION', 'Region for remote webdriver'
-          option ['--user-load'], 'USER_LOAD', 'Number of concurrent users', hidden: true
+          option ['--user-load'], 'USER_LOAD', 'Number of concurrent users'
 
           def execute
             schedule_test
