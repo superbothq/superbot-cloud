@@ -7,11 +7,10 @@ module Superbot
   module Cloud
     module CLI
       class LoginCommand < Clamp::Command
-        option ['-i', '--interactive'], :flag, 'interactive login from command line'
         option ['-f', '--force'], :flag, 'force override current credentials'
 
         def execute
-          return proceed_to_login if force? || Superbot::Cloud.credentials.nil?
+          return web_login if force? || Superbot::Cloud.credentials.nil?
 
           begin
             Superbot::Cloud::Api.request(:token)
@@ -19,19 +18,8 @@ module Superbot
             puts "Logged in as #{user_creds[:username]} (#{user_creds[:email]})"
           rescue SystemExit => e
             abort unless e.message == 'Invalid credentials'
-            proceed_to_login
+            web_login
           end
-        end
-
-        def proceed_to_login
-          interactive? ? console_login : web_login
-        end
-
-        def console_login
-          email = (print 'Email: '; $stdin.gets.rstrip)
-          password = (print 'Password: '; $stdin.gets.rstrip)
-          api_response = Superbot::Cloud::Api.request(:login, params: { email: email, password: password })
-          Superbot::Cloud.save_credentials(api_response)
         end
 
         def web_login

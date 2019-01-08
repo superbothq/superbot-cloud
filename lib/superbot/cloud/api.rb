@@ -7,7 +7,6 @@ module Superbot
     module Api
       BASE_URI = "#{Superbot::Cloud::BASE_URI}/api/v1"
       ENDPOINT_MAP = {
-        login:                      { method: :post, endpoint: 'sessions' },
         token:                      { method: :post, endpoint: 'token' },
         organization_list:          { method: :get, endpoint: 'organizations' },
         test_list:                  { method: :get, endpoint: 'tests' },
