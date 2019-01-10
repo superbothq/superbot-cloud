@@ -10,6 +10,7 @@ require_relative 'organization_command'
 require_relative 'test_command'
 require_relative 'webdriver_command'
 require_relative 'member_command'
+require_relative 'run_command'
 require_relative 'schedule_command'
 
 module Superbot
@@ -23,7 +24,8 @@ module Superbot
         subcommand ['test'], "Manage your tests", TestCommand
         subcommand ['webdriver'], "Manage your webdriver sessions", WebdriverCommand
         subcommand ['member'], "Manage your organization members", MemberCommand
-        subcommand(['schedule'], "Manage your test schedules", ScheduleCommand) if ENV['SUPERBOT_FEAT_SCHEDULE'] == 'true'
+        subcommand ['run'], "Schedule a cloud run", RunCommand
+        subcommand ['schedule'], "Manage your schedules", ScheduleCommand
 
         option ['-v', '--version'], :flag, "Show version information" do
           puts Superbot::Cloud::VERSION
