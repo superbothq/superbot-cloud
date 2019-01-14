@@ -26,7 +26,7 @@ module Superbot
             organization_name: organization,
             parallel: bots,
             starts_at: starts_at,
-            loop_count: loop_count
+            loop: loop_count
           }.compact
         end
       end
