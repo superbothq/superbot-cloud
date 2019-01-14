@@ -9,7 +9,7 @@ require_relative 'test/delete_command'
 module Superbot
   module Cloud
     module CLI
-      class TestCommand < OrganizationBasedCommand
+      class TestCommand < LoginRequiredCommand
         subcommand ['list'], "List user tests from the cloud", Test::ListCommand
         subcommand ['upload'], "Upload test to the cloud", Test::UploadCommand
         subcommand ['download'], "Download test from the cloud", Test::DownloadCommand
