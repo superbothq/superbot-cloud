@@ -12,7 +12,7 @@ module Superbot
           end
 
           def add_member
-            api_response = Superbot::Cloud::Api.request(:organization_add_member, params: { organization_name: organization, username: username })
+            api_response = Superbot::Cloud::Api.request(:add_member, params: { organization_name: organization, username: username })
             puts "Succesfully added %<username>s to %<organization>s organization" % api_response.slice(:username, :organization)
           end
         end

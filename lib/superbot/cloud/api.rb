@@ -18,9 +18,14 @@ module Superbot
         cancel_schedule:            { method: :delete, endpoint: 'schedules', required_param: :id },
         webdriver_session_list:     { method: :get, endpoint: 'webdriver_sessions' },
         delete_webdriver_session:   { method: :delete, endpoint: 'webdriver_sessions', required_param: :session_id },
-        organization_members_list:  { method: :get, endpoint: 'members' },
-        organization_add_member:    { method: :post, endpoint: 'members' },
-        organization_remove_member: { method: :delete, endpoint: 'members', required_param: :username }
+        member_list:                { method: :get, endpoint: 'members' },
+        add_member:                 { method: :post, endpoint: 'members' },
+        remove_member:              { method: :delete, endpoint: 'members', required_param: :username },
+        create_interactive_run:     { method: :post, endpoint: 'interactive_runs' },
+        abort_interactive_run:      { method: :delete, endpoint: 'interactive_runs', required_param: :id },
+        update_interactive_run:     { method: :patch, endpoint: 'interactive_runs', required_param: :id },
+        show_interactive_run:       { method: :get, endpoint: 'interactive_runs', required_param: :id },
+        interactive_run_list:       { method: :get, endpoint: 'interactive_runs' }
       }.freeze
 
       def self.request(type, params: {})

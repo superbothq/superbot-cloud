@@ -10,7 +10,7 @@ module Superbot
           end
 
           def list_members
-            api_response = Superbot::Cloud::Api.request(:organization_members_list, params: { organization_name: @organization })
+            api_response = Superbot::Cloud::Api.request(:member_list, params: { organization_name: @organization })
             abort api_response[:error] if api_response[:error]
             puts "Organization: #{api_response[:organization]}"
             puts "Members:"

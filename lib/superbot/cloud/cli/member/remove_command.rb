@@ -12,7 +12,7 @@ module Superbot
           end
 
           def remove_member
-            api_response = Superbot::Cloud::Api.request(:organization_remove_member, params: { organization_name: organization, username: username })
+            api_response = Superbot::Cloud::Api.request(:remove_member, params: { organization_name: organization, username: username })
             puts "Member successfully removed from organization"
           end
         end
