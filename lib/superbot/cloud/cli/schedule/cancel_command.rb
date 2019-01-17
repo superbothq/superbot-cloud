@@ -13,12 +13,10 @@ module Superbot
 
           def delete_schedule
             id_list.each do |schedule_id|
-              begin
-                Superbot::Cloud::Api.request(:cancel_schedule, params: { id: schedule_id, organization_name: organization })
-                puts "Test schedule #{schedule_id} successfully cancelled"
-              rescue SystemExit
-                p # skip to next schedule
-              end
+              Superbot::Cloud::Api.request(:cancel_schedule, params: { id: schedule_id, organization_name: organization })
+              puts "Test schedule #{schedule_id} successfully cancelled"
+            rescue SystemExit
+              p # skip to next schedule
             end
           end
         end
