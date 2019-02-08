@@ -21,8 +21,6 @@ module Superbot
           def list_sessions
             states = all? ? nil : %w[idle proxying]
             api_response = Superbot::Cloud::Api.request(:webdriver_session_list, params: { organization_name: organization, 'aasm_state[]': states })
-            abort api_response[:error] if api_response[:error]
-
             abort "No active sessions found for #{api_response[:organization]} organization" if api_response[:webdriver_sessions].empty?
 
             if quiet?

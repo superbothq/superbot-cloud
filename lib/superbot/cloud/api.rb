@@ -18,6 +18,7 @@ module Superbot
         cancel_schedule:            { method: :delete, endpoint: 'schedules', required_param: :id },
         webdriver_session_list:     { method: :get, endpoint: 'webdriver_sessions' },
         delete_webdriver_session:   { method: :delete, endpoint: 'webdriver_sessions', required_param: :session_id },
+        get_webdriver_session:      { method: :get, endpoint: 'webdriver_sessions', required_param: :session_id },
         member_list:                { method: :get, endpoint: 'members' },
         add_member:                 { method: :post, endpoint: 'members' },
         remove_member:              { method: :delete, endpoint: 'members', required_param: :username },
