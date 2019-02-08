@@ -12,6 +12,7 @@ require_relative 'webdriver_command'
 require_relative 'member_command'
 require_relative 'schedule_command'
 require_relative 'run_command'
+require_relative 'token_command'
 
 module Superbot
   module Cloud
@@ -25,7 +26,8 @@ module Superbot
         subcommand ['webdriver'], "Manage your webdriver sessions", WebdriverCommand
         subcommand ['member'], "Manage your organization members", MemberCommand
         subcommand ['schedule'], "Manage your schedules", ScheduleCommand
-        subcommand(['run'], "Schedule a cloud run", RunCommand) if ENV['SUPERBOT_FEAT_CLOUD_RUNS'] == 'true'
+        subcommand(['run'], "Manage your interactive cloud runs", RunCommand) if ENV['SUPERBOT_FEAT_CLOUD_RUNS'] == 'true'
+        subcommand ['token'], "Manage your organization tokens", TokenCommand
 
         option ['-v', '--version'], :flag, "Show version information" do
           puts Superbot::Cloud::VERSION
