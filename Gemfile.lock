@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    superbot-cloud (0.2.6)
+    superbot-cloud (0.2.7)
       marcel (= 0.3.3)
       multipart-post (= 2.0.0)
 
