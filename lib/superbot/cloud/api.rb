@@ -26,7 +26,10 @@ module Superbot
         abort_interactive_run:      { method: :delete, endpoint: 'interactive_runs', required_param: :id },
         update_interactive_run:     { method: :patch, endpoint: 'interactive_runs', required_param: :id },
         show_interactive_run:       { method: :get, endpoint: 'interactive_runs', required_param: :id },
-        interactive_run_list:       { method: :get, endpoint: 'interactive_runs' }
+        interactive_run_list:       { method: :get, endpoint: 'interactive_runs' },
+        access_token_list:          { method: :get, endpoint: 'access_tokens' },
+        create_access_token:        { method: :post, endpoint: 'access_tokens' },
+        revoke_access_token:        { method: :delete, endpoint: 'access_tokens', required_param: :token }
       }.freeze
 
       def self.request(type, params: {})
@@ -47,11 +50,10 @@ module Superbot
             request_class.new(uri).tap { |r| r.set_form_data(params) }
           end
 
-        if Superbot::Cloud.credentials
-          req['Authorization'] = format(
-            'Token token="%<token>s", email="%<email>s"',
-            **Superbot::Cloud.credentials.slice(:email, :token)
-          )
+        auth_token = ENV['SUPERBOT_TOKEN'] || Superbot::Cloud.credentials&.slice(:username, :token)&.values&.join(':')
+        if auth_token
+          auth_type = ENV['SUPERBOT_TOKEN'] ? 'Bearer' : 'Basic'
+          req['Authorization'] = "#{auth_type} #{Base64.urlsafe_encode64(auth_token)}"
         end
 
         response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
