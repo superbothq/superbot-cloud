@@ -34,6 +34,19 @@ module Superbot
       all_credentials.delete(Superbot::DOMAIN.to_sym)
       File.write CREDENTIALS_FILE_PATH, all_credentials.to_json
     end
+
+    def self.authorization_header
+      @authorization_header ||= format(
+        '%<auth_type>s %<auth_token>s',
+        auth_type: ENV['SUPERBOT_TOKEN'] ? 'Bearer' : 'Basic',
+        auth_token: Base64.urlsafe_encode64(
+          ENV.fetch(
+            'SUPERBOT_TOKEN',
+            credentials&.values_at(:username, :token)&.join(':').to_s
+          )
+        )
+      )
+    end
   end
 end
 
