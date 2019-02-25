@@ -26,7 +26,6 @@ module Superbot
       all_credentials[Superbot::DOMAIN.to_sym] = data.transform_keys!(&:to_sym)
       FileUtils.mkdir_p CREDENTIALS_PATH
       File.write CREDENTIALS_FILE_PATH, all_credentials.to_json
-      puts "Logged in as %<username>s (%<email>s)" % credentials.slice(:username, :email)
     end
 
     def self.remove_credentials

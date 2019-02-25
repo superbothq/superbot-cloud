@@ -9,6 +9,7 @@ module Superbot
       ENDPOINT_MAP = {
         token:                      { method: :post, endpoint: 'token' },
         organization_list:          { method: :get, endpoint: 'organizations' },
+        get_organization:           { method: :get, endpoint: 'organizations', required_param: :name},
         test_list:                  { method: :get, endpoint: 'tests' },
         test_upload:                { method: :post_multipart, endpoint: 'tests' },
         test_download:              { method: :get, endpoint: 'tests', required_param: :name },
@@ -34,7 +35,7 @@ module Superbot
 
       def self.request(type, params: {})
         method, endpoint, required_param = ENDPOINT_MAP[type].values
-        uri = URI.parse([BASE_URI, endpoint, params[required_param]].compact.join('/'))
+        uri = URI.parse([BASE_URI, endpoint, params[required_param] && CGI.escape(params[required_param])].compact.join('/'))
 
         request_class = Net::HTTP.const_get(method.to_s.split('_').map(&:capitalize).join('::'))
 

@@ -4,7 +4,7 @@ module Superbot
   module Cloud
     module CLI
       module Run
-        class CreateCommand < OrganizationBasedCommand
+        class CreateCommand < BaseCommand
           parameter "NAME", "the name of the test to delete", required: true
           option ['--region'], 'REGION', 'Region for remote webdriver'
 
