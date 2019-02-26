@@ -22,7 +22,7 @@ module Superbot
           end
 
           def list_schedules
-            states = all? ? nil : %w[initial processing]
+            states = all? ? nil : %w[initial deployed aquired]
             api_response = Superbot::Cloud::Api.request(:schedule_list, params: { organization_name: organization, 'aasm_state[]': states })
 
             abort api_response[:error] if api_response[:error]

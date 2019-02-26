@@ -57,7 +57,7 @@ module Superbot
           req['Authorization'] = "#{auth_type} #{Base64.urlsafe_encode64(auth_token)}"
         end
 
-        response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
+        response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https', read_timeout: 300) do |http|
           http.request(req)
         end
         parsed_response = response.class.body_permitted? && JSON.parse(response.body, symbolize_names: true) || {}
