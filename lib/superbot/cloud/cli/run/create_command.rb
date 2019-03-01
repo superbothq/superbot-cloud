@@ -5,7 +5,7 @@ module Superbot
     module CLI
       module Run
         class CreateCommand < BaseCommand
-          parameter "NAME", "the name of the test to delete", required: true
+          parameter "NAME", "the name of the test to create run for", required: true
           option ['--region'], 'REGION', 'Region for remote webdriver'
 
           def execute
