@@ -5,7 +5,7 @@ module Superbot
     module CLI
       module Run
         class ConsoleCommand < BaseCommand
-          parameter "ID", "the ID of run to bots", required: true
+          parameter "ID", "the ID of run to connect", required: true
 
           def execute
             abort "Run is not active anymore" if fetch_interaction[:status] == 'aborted'
