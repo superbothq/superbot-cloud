@@ -9,9 +9,9 @@ module Superbot
   module Cloud
     module CLI
       class MemberCommand < LoginRequiredCommand
-        subcommand ['add'], "Add member to organization", Member::AddCommand
-        subcommand ['remove'], "Remove member from organization", Member::RemoveCommand
-        subcommand ['list'], "List your organization members", Member::ListCommand
+        subcommand ['add'], "Add a member to organization", Member::AddCommand
+        subcommand ['remove'], "Remove a member from organization", Member::RemoveCommand
+        subcommand ['list'], "List organization's members", Member::ListCommand
       end
     end
   end

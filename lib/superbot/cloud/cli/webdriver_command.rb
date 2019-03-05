@@ -11,7 +11,7 @@ module Superbot
       class WebdriverCommand < LoginRequiredCommand
         subcommand ['list'], "List all webdriver sessions", Webdriver::ListCommand
         subcommand ['delete'], "Terminate and finish specific session", Webdriver::DeleteCommand
-        subcommand ['create'], "Create active webdriver session", Webdriver::CreateCommand
+        subcommand ['create'], "Create an active webdriver session", Webdriver::CreateCommand
       end
     end
   end

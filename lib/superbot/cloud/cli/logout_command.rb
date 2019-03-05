@@ -6,7 +6,7 @@ module Superbot
       class LogoutCommand < Clamp::Command
         def execute
           Superbot::Cloud.remove_credentials
-          puts "Succesfully loged out."
+          puts "Succesfully logged out."
         end
       end
     end

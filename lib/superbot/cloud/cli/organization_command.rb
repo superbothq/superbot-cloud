@@ -8,7 +8,7 @@ module Superbot
   module Cloud
     module CLI
       class OrganizationCommand < LoginRequiredCommand
-        subcommand ['list'], "List user organizations from the cloud", Organization::ListCommand
+        subcommand ['list'], "List user's organizations from the cloud", Organization::ListCommand
         subcommand ['default'], "Set default organization for CLI", Organization::DefaultCommand
       end
     end
