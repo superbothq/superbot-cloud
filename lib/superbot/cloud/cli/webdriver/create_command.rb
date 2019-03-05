@@ -21,7 +21,7 @@ module Superbot
               }
             }
             request_body[:desiredCapabilities][:superOptions][:region] = region if region
-            puts "Creating webdriver session..."
+            puts "Creating a webdriver session..."
             puts "Please wait for Session ID or press [ctrl/cmd + c] to exit"
             session = Excon.post(
               [Superbot.webdriver_endpoint(local? ? 'local_cloud' : 'cloud'), 'wd/hub/session'].join('/'),

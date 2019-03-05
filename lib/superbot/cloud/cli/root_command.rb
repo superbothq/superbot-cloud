@@ -24,10 +24,10 @@ module Superbot
         subcommand ['org'], 'Manage your organizations', OrganizationCommand
         subcommand ['test'], "Manage your tests", TestCommand
         subcommand ['webdriver'], "Manage your webdriver sessions", WebdriverCommand
-        subcommand ['member'], "Manage your organization members", MemberCommand
+        subcommand ['member'], "Manage your organization's members", MemberCommand
         subcommand ['schedule'], "Manage your schedules", ScheduleCommand
         subcommand(['run'], "Manage your interactive cloud runs", RunCommand) if ENV['SUPERBOT_FEAT_CLOUD_RUNS'] == 'true'
-        subcommand ['token'], "Manage your organization tokens", TokenCommand
+        subcommand ['token'], "Manage your organization's tokens", TokenCommand
 
         option ['-v', '--version'], :flag, "Show version information" do
           puts Superbot::Cloud::VERSION

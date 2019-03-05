@@ -10,8 +10,8 @@ module Superbot
     module CLI
       class TokenCommand < LoginRequiredCommand
         subcommand ['generate'], "Generate new access token", Token::GenerateCommand
-        subcommand ['revoke'], "Revoke token", Token::RevokeCommand
-        subcommand ['list'], "List your organization access tokens", Token::ListCommand
+        subcommand ['revoke'], "Revoke a token", Token::RevokeCommand
+        subcommand ['list'], "List your organization's access tokens", Token::ListCommand
       end
     end
   end
