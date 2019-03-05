@@ -10,6 +10,8 @@ module Superbot
           option ['--when'], 'WHEN', "When to schedule a test (either asap or cron expression)", default: 'asap', attribute_name: :starts_at
           option ['--bots'], 'BOTS', 'Number of running cloud superbots', default: 1
           option ['--loop'], 'LOOP_COUNT', 'Number of runs for each bot', default: 1, attribute_name: :loop_count
+          option ['--base-url'], 'BASE_URL', 'Base project URL for test'
+          option ['--local-webdriver'], :flag, 'Use local webdriver instead of cloud webdriver api', hidden: true
 
           def execute
             schedule_test
@@ -27,7 +29,9 @@ module Superbot
               organization_name: organization,
               parallel: bots,
               starts_at: starts_at,
-              loop: loop_count
+              loop: loop_count,
+              webdriver_api: local_webdriver?,
+              base_url: base_url
             }.compact
           end
         end
