@@ -32,7 +32,7 @@ module Superbot
               bots_delay: bots_delay,
               starts_at: starts_at,
               loop: loop_count,
-              webdriver_api: local_webdriver?,
+              webdriver_api: !local_webdriver?,
               base_url: base_url
             }.compact
           end
