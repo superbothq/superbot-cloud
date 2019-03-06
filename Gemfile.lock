@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    superbot-cloud (0.3.4)
+    superbot-cloud (0.3.5)
       marcel (= 0.3.3)
       multipart-post (= 2.0.0)
 
@@ -10,7 +10,7 @@ GEM
   specs:
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    archive-zip (0.11.0)
+    archive-zip (0.12.0)
       io-like (~> 0.3.0)
     ast (2.4.0)
     childprocess (0.9.0)
@@ -77,17 +77,17 @@ GEM
       rack-protection (= 2.0.5)
       tilt (~> 2.0)
     sinatra-silent (0.0.1)
-    superbot (0.4.0)
+    superbot (0.4.6)
       clamp (= 1.2.1)
       kommando (= 0.1.2)
       launchy (= 2.4.3)
       sinatra (= 2.0.5)
       sinatra-silent (= 0.0.1)
-      superbot-cloud (= 0.3.0)
+      superbot-cloud (= 0.3.4)
       superbot-record (= 0.1.0)
       superbot-runner (= 0.1.3)
       superbot-selenium-webdriver (= 1.0.5)
-      superbot-teleport (= 0.3.0)
+      superbot-teleport (= 0.3.4)
       zaru (= 0.2.0)
     superbot-record (0.1.0)
       superbot-record-chrome
@@ -98,7 +98,7 @@ GEM
     superbot-selenium-webdriver (1.0.5)
       chromedriver-helper (= 2.1.0)
       selenium-webdriver (= 3.141.0)
-    superbot-teleport (0.3.0)
+    superbot-teleport (0.3.4)
       excon
     tilt (2.0.9)
     unicode-display_width (1.4.0)
@@ -112,7 +112,7 @@ DEPENDENCIES
   rake (~> 10.0)
   rspec (~> 3.0)
   rubocop (~> 0.53)
-  superbot (~> 0.4.0)
+  superbot (~> 0.4.6)
   superbot-cloud!
 
 BUNDLED WITH
